@@ -31,6 +31,12 @@ pipeline {
             }
         }
 
+        stage('Set Version') {
+            steps {
+                sh "mvn versions:set -DnewVersion=1.0.${BUILD_NUMBER}"
+            }
+        }
+
         stage('Package') {
             steps {
                 echo 'Packaging the application...'
