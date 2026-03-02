@@ -8,6 +8,14 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube-Local') {
+                    bat "mvn clean verify sonar:sonar"
+                }
+            }
+        }
+
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
